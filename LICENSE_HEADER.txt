@@ -13,11 +13,3 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.aogaga;
-
-public class Main {
-
-  public static void main(String[] args) {
-    System.out.println("Hello world!");
-  }
-}
