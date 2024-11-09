@@ -22,7 +22,7 @@ dependencies {
 spotless {
     java {
         target("src/**/*.java")
-        googleJavaFormat("1.24.0")
+        googleJavaFormat()
         importOrder()
         removeUnusedImports()
         trimTrailingWhitespace()

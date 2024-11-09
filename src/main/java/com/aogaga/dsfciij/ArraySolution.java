@@ -17,6 +17,7 @@ package com.aogaga.dsfciij;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ArraySolution {
@@ -76,5 +77,32 @@ public class ArraySolution {
       result[i] = resultHolder.get(i);
     }
     return result;
+  }
+
+  public int[] findSum(int[] arr, int n) {
+    int[] result = new int[2];
+    for (int i = 0; i < arr.length; i++) {
+      for (int j = i + 1; j < arr.length; j++) {
+        if (arr[i] + arr[j] == n) {
+          result[0] = arr[i];
+          result[1] = arr[j];
+          break;
+        }
+      }
+    }
+    Arrays.sort(result);
+    System.out.println(Arrays.toString(result));
+    return result;
+  }
+
+  public int[] findSumSorted(int[] arr, int n){
+    Arrays.sort(arr);
+
+    int start  = 0;
+    int end = arr.length - 1;
+
+
+
+
   }
 }
