@@ -44,6 +44,43 @@ class ArraySolutionTest {
     assertArrayEquals(expected, result);
   }
 
+  @ParameterizedTest
+  @MethodSource("mergeArraysData")
+  void mergeArrays(int[] a, int[] b, int[] expected) {
+
+    int[] actual = solution.mergeArrays(a, b);
+
+    assertArrayEquals(expected, actual);
+  }
+
+  @ParameterizedTest
+  @MethodSource("findSumData")
+  void findSum(int[] arr, int n, int[] expected) {
+    int[] acutal = solution.findSum(arr, n);
+    assertArrayEquals(expected, acutal);
+  }
+
+  @ParameterizedTest
+  @MethodSource("findSumData")
+  void findSumSorted(int[] arr, int n, int[] expected) {
+    int[] actual = solution.findSumSorted(arr, n);
+    assertArrayEquals(expected, actual);
+  }
+
+  @ParameterizedTest
+  @MethodSource("findProductData")
+  void findProduct(int[] arr, int[] expected) {
+    int[] actual = solution.findProduct(arr);
+    assertArrayEquals(expected, actual);
+  }
+
+  @ParameterizedTest
+  @MethodSource("findProductData")
+  void findProductOptimized(int[] arr, int[] expected) {
+    int[] actual = solution.findProductOptimized(arr);
+    assertArrayEquals(expected, actual);
+  }
+
   static Stream<Object[]> removeEvenData() {
     return Stream.of(
         new Object[] {new int[] {1, 3, -2, 4, 7}, new int[] {1, 3, 7}},
@@ -52,15 +89,6 @@ class ArraySolutionTest {
         new Object[] {new int[] {1, 3, 5, 7, 9}, new int[] {1, 3, 5, 7, 9}},
         new Object[] {new int[] {0}, new int[] {}},
         new Object[] {new int[] {1, 22, 45, 33, 19, 32}, new int[] {1, 45, 33, 19}});
-  }
-
-  @ParameterizedTest
-  @MethodSource("mergeArraysData")
-  void mergeArrays(int[] a, int[] b, int[] expected) {
-
-    int[] actual = solution.mergeArrays(a, b);
-
-    assertArrayEquals(expected, actual);
   }
 
   static Stream<Object[]> mergeArraysData() {
@@ -89,15 +117,6 @@ class ArraySolutionTest {
         });
   }
 
-  @ParameterizedTest
-  @MethodSource("findSumData")
-  void findSum(int[] arr, int n, int[] expected) {
-
-    int[] acutal = solution.findSum(arr, n);
-
-    assertArrayEquals(expected, acutal);
-  }
-
   static Stream<Object[]> findSumData() {
     return Stream.of(
         new Object[] {new int[] {1, 10, 8, 4, 9}, 17, new int[] {8, 9}},
@@ -110,5 +129,17 @@ class ArraySolutionTest {
         new Object[] {
           new int[] {49, 17, 15, 22, -45, 29, 18, -15, 11, 37, 12, -52}, 0, new int[] {-15, 15}
         });
+  }
+
+  static Stream<Object[]> findProductData() {
+    return Stream.of(
+        new Object[] {new int[] {2, 4, 0, 6}, new int[] {0, 0, 48, 0}},
+        new Object[] {new int[] {0, -1, 2, -3, 4, -2}, new int[] {-48, 0, 0, 0, 0, 0}},
+        new Object[] {new int[] {5, 3, -1, 6, 4}, new int[] {-72, -120, 360, -60, -90}},
+        new Object[] {
+          new int[] {-7, 6, 4, 3, 1, 2}, new int[] {144, -168, -252, -336, -1008, -504}
+        },
+        new Object[] {new int[] {1, 2, 3, 4}, new int[] {24, 12, 8, 6}},
+        new Object[] {new int[] {-1, 1}, new int[] {1, -1}});
   }
 }

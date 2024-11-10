@@ -95,14 +95,60 @@ public class ArraySolution {
     return result;
   }
 
-  public int[] findSumSorted(int[] arr, int n){
+  public int[] findSumSorted(int[] arr, int n) {
     Arrays.sort(arr);
 
-    int start  = 0;
+    int start = 0;
     int end = arr.length - 1;
+    int[] result = new int[2];
 
+    while (start < end) {
+      if ((arr[start] + arr[end]) == n) {
+        result[0] = arr[start];
+        result[1] = arr[end];
+        break;
+      } else if ((arr[start] + arr[end]) < n) {
+        start++;
+      } else {
+        end--;
+      }
+    }
 
+    return result;
+  }
 
+  public int[] findProduct(int arr[]) {
+    int[] result = new int[arr.length];
 
+    for (int i = 0; i < arr.length; i++) {
+      double product = 1;
+      for (int j = 0; j < arr.length; j++) {
+        if (i != j) {
+          product *= arr[j];
+        }
+      }
+
+      result[i] = (int) product;
+    }
+
+    return result;
+  }
+
+  public int[] findProductOptimized(int arr[]) {
+    int left = 1;
+    int right = 1;
+    int n = arr.length;
+    int[] result = new int[arr.length];
+
+    for (int i = 0; i < n; i++) {
+      result[i] = left;
+      left *= arr[i];
+    }
+
+    for (int i = n - 1; i >= 0; i--) {
+      result[i] *= right;
+      right *= arr[i];
+    }
+    return result;
   }
 }
