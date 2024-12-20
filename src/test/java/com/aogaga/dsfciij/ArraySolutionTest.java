@@ -81,6 +81,93 @@ class ArraySolutionTest {
     assertArrayEquals(expected, actual);
   }
 
+  @ParameterizedTest
+  @MethodSource("findMinimumData")
+  void findMinimumTest(int[] arr, int actual) {
+    int expected = solution.findMinimum(arr);
+    assertEquals(expected, actual);
+  }
+
+  @ParameterizedTest
+  @MethodSource("findFirstUniqueData")
+  void findFirstUniqueTest(int[] arr, int expected) {
+    int actual = solution.findFirstUnique(arr);
+    assertEquals(expected, actual);
+  }
+
+  @ParameterizedTest
+  @MethodSource("findSecondMaximumData")
+  void findSecondMaximumTest(int[] arr, int expected) {
+    int actual = solution.findSecondMaximum(arr);
+    assertEquals(actual, expected);
+  }
+
+  @ParameterizedTest
+  @MethodSource("rightRotateData")
+  void rightRotateTest(int[] arr, int n, int[] expected) {
+    int[] actual = solution.rightRotate(arr, n);
+
+    assertArrayEquals(actual, expected);
+  }
+
+  @ParameterizedTest
+  @MethodSource("rearrangeData")
+  void rearrangeTest(int[] arr, int[] expected) {
+    int[] actual = solution.rearrange(arr);
+    assertArrayEquals(actual, expected);
+  }
+
+  /** Test Method Data */
+  static Stream<Object[]> rearrangeData() {
+    return Stream.of(
+        new Object[] {new int[] {5, -2, 7, 3, 0, 8, 0, -6}, new int[] {-2, -6, 5, 7, 3, 0, 8, 0}},
+        new Object[] {new int[] {5, -2, 7, 3, 0, 8, 0, -6}, new int[] {-2, -6, 5, 7, 3, 0, 8, 0}});
+  }
+
+  static Stream<Object[]> rightRotateData() {
+    return Stream.of(
+        new Object[] {new int[] {10, 20, 30, 40, 50}, 3, new int[] {30, 40, 50, 10, 20}},
+        new Object[] {new int[] {1}, 1, new int[] {1}}
+        //        new Object[] {new int[] {1, 2, 3, 4, 5, 6, 7}, 3, new int[] {5, 6, 7, 1, 2, 3,
+        // 4}},
+        //        new Object[] {new int[] {1, 2, 3, 4, 5, 6}, 10, new int[] {3, 4, 5, 6, 1, 2}},
+        //        new Object[] {new int[] {-1, -2, -3, -4, -5}, 0, new int[] {-1, -2, -3, -4, -5}},
+        //
+        //        new Object[] {new int[] {10, 12}, 1, new int[] {12, 10}}
+        );
+  }
+
+  static Stream<Object[]> findSecondMaximumData() {
+    return Stream.of(
+        new Object[] {new int[] {4, 2, 1, 5, 0}, 4},
+        new Object[] {new int[] {-2, 9}, -2},
+        new Object[] {new int[] {-2, -3, -5, -7}, -3},
+        new Object[] {new int[] {2, 9, 5, 4, 0}, 5},
+        new Object[] {new int[] {4, -2, 5, -2, 5, 6}, 5}
+        //        new Object[] {new int[] {4, 10, 10, 8, 9}, 9}
+        );
+  }
+
+  static Stream<Object[]> findFirstUniqueData() {
+    return Stream.of(
+        new Object[] {new int[] {1, 2, 3}, 1},
+        new Object[] {new int[] {4}, 4},
+        new Object[] {new int[] {2, 2, -6}, -6},
+        new Object[] {new int[] {-9, -10, -10, -11, -11}, -9},
+        new Object[] {new int[] {5, 5, 6, 6, 7, 8, 9, 9}, 7},
+        new Object[] {new int[] {-9, 1, 8, -9, 20, 1, 8}, 20});
+  }
+
+  static Stream<Object[]> findMinimumData() {
+    return Stream.of(
+        new Object[] {new int[] {1, 2, -3, -1, -2}, -3},
+        new Object[] {new int[] {-1, -2, 5, 4}, -2},
+        new Object[] {new int[] {-1, -2, -3, -4, -10}, -10},
+        new Object[] {new int[] {2, 2, 2, 2, 2, 2}, 2},
+        new Object[] {new int[] {20, 13, 12, 11, 6, 18, 3}, 3},
+        new Object[] {new int[] {-1, 2}, -1});
+  }
+
   static Stream<Object[]> removeEvenData() {
     return Stream.of(
         new Object[] {new int[] {1, 3, -2, 4, 7}, new int[] {1, 3, 7}},

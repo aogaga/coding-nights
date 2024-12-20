@@ -18,6 +18,7 @@ package com.aogaga.dsfciij;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class ArraySolution {
@@ -117,7 +118,7 @@ public class ArraySolution {
     return result;
   }
 
-  public int[] findProduct(int arr[]) {
+  public int[] findProduct(int[] arr) {
     int[] result = new int[arr.length];
 
     for (int i = 0; i < arr.length; i++) {
@@ -134,7 +135,7 @@ public class ArraySolution {
     return result;
   }
 
-  public int[] findProductOptimized(int arr[]) {
+  public int[] findProductOptimized(int[] arr) {
     int left = 1;
     int right = 1;
     int n = arr.length;
@@ -149,6 +150,90 @@ public class ArraySolution {
       result[i] *= right;
       right *= arr[i];
     }
+    return result;
+  }
+
+  public int findMinimum(int[] arr) {
+    int min = Integer.MAX_VALUE;
+    for (int x : arr) {
+      if (x < min) {
+        min = x;
+      }
+    }
+    return min;
+  }
+
+  public int findFirstUnique(int[] arr) {
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+
+    for (int n : arr) {
+      if (!map.containsKey(n)) {
+        map.put(n, 1);
+      } else {
+        map.replace(n, (map.get(n) + 1));
+      }
+    }
+
+    for (int x : arr) {
+      if (map.get(x) == 1) {
+        return x;
+      }
+    }
+    return 0;
+  }
+
+  public int findSecondMaximum(int[] arr) {
+    int max = Integer.MIN_VALUE;
+    int max2 = max + 1;
+
+    for (int x : arr) {
+      if (x > max) {
+        max2 = max;
+        max = x;
+      } else {
+        if (x > max2) {
+          max2 = x;
+        }
+      }
+    }
+
+    return max2;
+  }
+
+  public int[] rightRotate(int[] arr, int n) {
+    int[] nums = new int[arr.length];
+
+    int x = 0;
+
+    for (int i = n - 1; i < arr.length; i++) {
+      System.out.println(arr[i]);
+      nums[x++] = arr[i];
+    }
+
+    for (int i = 0; i < n - 1; i++) {
+      nums[x++] = arr[i];
+    }
+
+    System.out.println(Arrays.toString(nums));
+    return nums;
+  }
+
+  public int[] rearrange(int[] arr) {
+    int[] result = new int[arr.length];
+    int x = 0;
+    for (int i : arr) {
+      if (i < 0) {
+        System.out.println(x);
+        result[x++] = i;
+      }
+    }
+
+    for (int i : arr) {
+      if (i >= 0) {
+        result[x++] = i;
+      }
+    }
+
     return result;
   }
 }
